@@ -1,9 +1,9 @@
-import React, { ReactNode } from "react";
+import React, { ReactElement } from "react";
 import { StyleProp, StyleSheet, Text, TextStyle } from "react-native";
 import Colors from "../../constants/colors";
 
 type Props = {
-  children: ReactNode;
+  children: string | ReactElement<Text>;
   style?: StyleProp<TextStyle>;
 };
 

@@ -7,6 +7,13 @@ type Props = {
   guess: number;
 };
 
+/**
+ * This is the card used to log each guess attempt by the game.
+ * 
+ * `roundNumber` is the current count of attempts the game is taking to guess the right number
+ * 
+ * `guess` is the wrong guess made by the game 
+ */
 function GuessLogItem({ roundNumber, guess }: Props) {
   return (
     <View style={styles.listItem}>

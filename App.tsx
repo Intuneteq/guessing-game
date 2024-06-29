@@ -10,15 +10,23 @@ import GameOverScreen from "./screens/GameOverScreen";
 import StartGameScreen from "./screens/StartGameScreen";
 
 export default function App() {
+  // Tracks game state. True when the user starts the game - the default,
+  // then false when game is over - The game guessed the right number
   const [gameIsOver, setGameIsOver] = useState(true);
+
+  // The number of attempts the game took to guess the correct user number
   const [guessRounds, setGuessRounds] = useState(0);
+
+  // Tracks the user chosen number
   const [userNumber, setUserNumber] = useState<number | null>();
 
+  // Load the custom fonts
   const [fontsLoaded] = useFonts({
     "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
     "open-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
 
+  // Show Loading state when Fonts is Loading
   if (!fontsLoaded) {
     <AppLoading />;
   }
@@ -38,6 +46,12 @@ export default function App() {
     setGuessRounds(numberOfRounds);
   }
 
+  /**
+   * Fires when user clicks on start new game
+   * Restarts by setting game is over state to false.
+   * It resets the user number to default - `null`
+   * Rests Guess rounds back to zero.
+   */
   function startNewGameHandler() {
     setGameIsOver(false);
     setUserNumber(null);
@@ -47,14 +61,15 @@ export default function App() {
   // Default screen
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
 
-  // If the user selects a number, move the user to the Game screen.
+  // If the user selects a number, move the user to the Game screen - Start the game.
   if (userNumber) {
     screen = (
       <GameScreen onGameOver={gameOverHandler} userNumber={userNumber} />
     );
   }
 
-  /**  The Game is over when the `gameOverHandler` function is fired and the user has a number
+  /**
+   * The Game is over when the `gameOverHandler` function is fired and the user has a number
    * i.e The user is done playing
    */
   if (gameIsOver && userNumber) {

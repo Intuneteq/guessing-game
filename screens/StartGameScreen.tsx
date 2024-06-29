@@ -13,16 +13,23 @@ type Props = {
 };
 
 const StartGameScreen = ({ onPickNumber }: Props) => {
+  // Local state to manage the user's entered number input text field
   const [enteredNumber, setEnteredNumber] = useState("");
 
+  // Handler Function to manage the key stroke events when the user types in a number
   function numberInputHandler(input: string) {
     setEnteredNumber(input);
   }
 
+  // Handler function to confirm and pick a number.
   function confirmInputHandler() {
+    // Entered Number will be a string - Every number or text from an input will always be a string
+    // So we parse it
     const chosenNumber = parseInt(enteredNumber);
 
+    // Check if the parsed number is not a number and the number is not within our guess range i.e 0 - 99
     if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+      // Show an alert popup when the
       Alert.alert(
         "Invalid number!",
         "Number has to be a number between 1 and 99.",
@@ -32,9 +39,11 @@ const StartGameScreen = ({ onPickNumber }: Props) => {
       return;
     }
 
+    // Fire the onPickNumber function
     onPickNumber(chosenNumber);
   }
 
+  // Resets the Local state
   function resetInputHandler() {
     setEnteredNumber("");
   }

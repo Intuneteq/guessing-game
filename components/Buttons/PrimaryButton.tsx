@@ -16,7 +16,7 @@ type Props = {
 /**
  * Custom Button component.
  *
- * This is the Primary button for our application.
+ * This is the Primary button for the application.
  */
 function PrimaryButton({ children, onPress }: Props) {
   return (

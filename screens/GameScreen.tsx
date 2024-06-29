@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Alert, Text, FlatList } from "react-native";
+import { View, StyleSheet, Alert, FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import Title from "../components/Ui/Title";
@@ -16,7 +16,7 @@ type Props = {
 
 /**
  * Generate a Random number between a Min and Max Number recursively,
- * recalling the function if the exclude number is generated.
+ * recalling the function if the excluded number is generated.
  *
  * @param min Minimum number that can be generated
  * @param max Maximum number that can be generated
